@@ -1,0 +1,41 @@
+.board {
+    width: 100vw;
+    height: 40vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cell {
+    width: 100%;
+    max-width: 100px;
+    border: 1px solid #000;
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .cell {
+        max-width: 150px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .board {
+        width: 50vw;
+        height: 100vh;
+    }
+}
