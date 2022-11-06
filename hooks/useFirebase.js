@@ -17,6 +17,7 @@ export default function useFirebase() {
     const [ app, setApp ] = useState(null);
     const [ auth, setAuth ] = useState(null);
     const [ db, setDb ] = useState(null);
+    const [ userData, setUserData ] = useState(null);
     const [ logged, setLogged ] = useState(false);
 
     useEffect(() => {
@@ -31,5 +32,5 @@ export default function useFirebase() {
         });
     }, []);
 
-    return { app, auth, db, logged };
+    return { app, auth, db, logged, userData, setUserData };
 } 

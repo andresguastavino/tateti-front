@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
+import { useRouter } from 'next/router'
 import { FirebaseContext } from '../hooks/FirebaseContext';
 import { signOut } from "firebase/auth";
 // import Board from '../components/Board';
@@ -6,21 +7,32 @@ import { signOut } from "firebase/auth";
 
 export default function Home() {
 
-    const { auth } = useContext(FirebaseContext);
+    const router = useRouter();
+
+    const { auth, userData, logged } = useContext(FirebaseContext);
+    console.log(userData);
+    
+    useEffect(() => {
+        if(!logged) router.push('/auth');
+        console.log(userData);
+        // if(logged && !userData.username) router.push('/username');
+    });
 
     return (
-        <button type="button"
-            onClick={() => {
-                signOut(auth).then(() => {
-                    console.log('Signed out succesfully!');
-                })
-                .catch((error) => {
-                    const { code, message } = error;
-                    console.error(`Error ${ code } ocurred: ${ message }`);
-                });
-            }}
-        >
-            Sign out
-        </button>
+        <>
+            <button type="button"
+                onClick={() => {
+                    signOut(auth).then(() => {
+                        console.log('Signed out succesfully!');
+                    })
+                    .catch((error) => {
+                        const { code, message } = error;
+                        console.error(`Error ${ code } ocurred: ${ message }`);
+                    });
+                }}
+            >
+                Sign out
+            </button>
+        </>
     );
 }

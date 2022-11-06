@@ -4,5 +4,7 @@ export const FirebaseContext = createContext({
     app: null,
     auth: null,
     db: null,
-    logged: false
+    userData: null,
+    setUserData: null,
+    logged: false,
 });

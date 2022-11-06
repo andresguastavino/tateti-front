@@ -12,7 +12,7 @@ export default function AuthForm() {
     const inputEmailRef = useRef(null);
     const inputPasswordRef = useRef(null);
         
-    const { auth, db } = useContext(FirebaseContext);
+    const { auth, db, setUserData } = useContext(FirebaseContext);
     
     const router = useRouter();
 
@@ -52,6 +52,7 @@ export default function AuthForm() {
 
             if(docSnap.exists()) {
                 console.log(docSnap.data());
+                setUserData(docSnap.data());
             } else {
                 console.log('Document don\'t exists');
             }
@@ -69,6 +70,7 @@ export default function AuthForm() {
                     const { code, message } = error;
                     console.error(`Error ${ code } ocurred: ${ message }`);
                 });
+            setUserData(initialData);
         }
 
         router.push('/');
